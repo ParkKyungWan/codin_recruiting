@@ -1,0 +1,2 @@
+export const RECUITMENT_START_DATE = "25.04.00";
+export const RECRUITMENT_END_DATE = "25.05.00";
