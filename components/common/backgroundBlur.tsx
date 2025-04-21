@@ -22,6 +22,7 @@ const BackGroundBlur = ({}:BackGroundBlurProps) => {
         const getPositiveValue = () => (Math.random()*baseNum + baseNum/2);  
         const getNegativeValue = () => -1* (Math.random()*baseNum + baseNum/2);  
         const result = Math.random() < 0.5 ? getPositiveValue() : getNegativeValue();
+        console.log(result);
         return result;
     }
 
@@ -44,7 +45,7 @@ const BackGroundBlur = ({}:BackGroundBlurProps) => {
                 const smRadius = smDiameter/2;
                 const lgDiameter = containerRef.current.offsetWidth*1.5;
                 const lgRadius = lgDiameter/2;
-                const baseSpeed = smDiameter/5;
+                const baseSpeed = smDiameter/4;
                 const newCircles = [
                     { id: 1, x: -smRadius/1.7,        y: -smRadius/2,          diameter: smDiameter, opacity:"17", dx: randomSpeed(baseSpeed), dy: randomSpeed(baseSpeed) },
                     { id: 2, x: nowW/2-smRadius*1.2,  y: nowH/2-smRadius*0.7,  diameter: smDiameter, opacity:"17", dx: randomSpeed(baseSpeed), dy: randomSpeed(baseSpeed) },
@@ -68,7 +69,7 @@ const BackGroundBlur = ({}:BackGroundBlurProps) => {
     }, []);
 
     return (
-        <div ref={containerRef} className="relative flex w-full h-full overflow-visible" style={{filter: `blur(50px)`}}>
+        <div ref={containerRef} className="absolute left-0 top-0 flex w-full h-full overflow-visible" style={{filter: `blur(50px)`}}>
             {circles.map((circle)=>(
                 <motion.div
                     key={circle.id}
@@ -83,8 +84,8 @@ const BackGroundBlur = ({}:BackGroundBlurProps) => {
                         y: circle.y,
                     }}
                     animate={{
-                        x: [circle.x, circle.x + circle.dx, circle.x, circle.x + circle.dx],
-                        y: [circle.y, circle.y + circle.dy, circle.y, circle.y + circle.dy],
+                        x: [circle.x, circle.x + circle.dx],
+                        y: [circle.y, circle.y + circle.dy],
                     }}
                     transition={{
                         duration: 45,

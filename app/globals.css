@@ -31,6 +31,31 @@
   --font-sans: var(--font-Goorm);
 }
 
+@layer utilities {
+  .text-sub {
+    color: rgba(255,255,255,0.6);
+  }
+  .text-highlight {
+    color: #A9DBFF;
+  }
+
+  .font-title{
+    font-size: 20px;
+  }
+  .font-subtitle{
+    font-size: 18px;
+  }
+
+  @media(max-width: 640px){
+    .font-title{
+      font-size: 16px;
+    }
+    .font-subtitle{
+      font-size: 12px;
+    }
+  }
+
+}
 /* 다크 모드 설정
 @media (prefers-color-scheme: dark) {
   :root {
@@ -41,7 +66,7 @@
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: rgba(255,255,255,0.88);
   font-family: var(--font-Goorm);
 }
 
@@ -51,4 +76,21 @@ button{
     transform: translateY(-1.5px);
     transition: transform 0.2s ease;
   }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.0); /* 스크롤 트랙 배경 검정 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555; /* 스크롤바 손잡이 */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }
