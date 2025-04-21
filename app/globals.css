@@ -44,3 +44,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-Goorm);
 }
+
+button{
+  &:hover{
+    cursor: pointer;
+    transform-origin: center; /* 크기 변형이 중심에서 발생하도록 설정 */
+    transform: scale(1.03);
+    transition: transform 0.2s ease;
+  }
+}
