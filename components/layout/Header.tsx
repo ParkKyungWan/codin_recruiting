@@ -4,14 +4,14 @@ import { RECUITMENT_START_DATE, RECRUITMENT_END_DATE } from "@/constants/recruit
 import { MAX_LAYOUT_WIDTH } from "@/constants/layout";
 import { useRouter } from "next/navigation";
 
-export default function Header() {
+const Header = () => {
   const router = useRouter();
   const handleLogoClick = () =>{
     router.push("/");
   }
   
     return (
-      <header className="fixed top-0 left-0 w-full flex justify-center items-center bg-[rgba(255,255,255,0.04)] py-4 px-4 sm:px-8">
+      <header className="fixed top-0 left-0 z-100 w-full flex justify-center items-center bg-[rgba(255,255,255,0.04)] py-4 px-4 sm:px-8 h-[68px] max-h-[68px]">
         <div className="flex justify-between items-center w-full gap-4" style={{ maxWidth: MAX_LAYOUT_WIDTH }}>
             <button id="LogoArea" onClick={()=>{handleLogoClick()}}>
                 <img src="/logo/logo_recuiting.png" className="min-w-[102px] sm:min-w-[162px]" width={162}/>
@@ -26,3 +26,4 @@ export default function Header() {
     );
   }
   
+export default Header;
