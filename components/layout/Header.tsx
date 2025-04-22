@@ -4,7 +4,7 @@ import { RECUITMENT_START_DATE, RECRUITMENT_END_DATE } from "@/constants/recruit
 import { MAX_LAYOUT_WIDTH } from "@/constants/layout";
 import { useRouter } from "next/navigation";
 
-const Header = () => {
+const Header: React.FC = () => {
   const router = useRouter();
   const handleLogoClick = () =>{
     router.push("/");

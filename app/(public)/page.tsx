@@ -1,7 +1,7 @@
 import BackGroundBlur from "@/components/common/backgroundBlur";
 import Header from "@/components/layout/header";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="relative flex flex-col items-center w-full h-screen">
