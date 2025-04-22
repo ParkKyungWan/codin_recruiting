@@ -87,7 +87,7 @@ const BackGroundBlur = ({}:BackGroundBlurProps) => {
                         y: [circle.y, circle.y + circle.dy],
                     }}
                     transition={{
-                        duration: 45,
+                        duration: 20,
                         repeat: Infinity,
                         repeatType: 'mirror',
                     }}
