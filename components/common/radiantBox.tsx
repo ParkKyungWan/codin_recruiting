@@ -1,8 +1,5 @@
 "use client"
 
-/** @jsxImportSource @emotion/react */
-import { keyframes } from '@emotion/react';
-
 interface RadiantBoxProps {
     children?: React.ReactNode;
 }
