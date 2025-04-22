@@ -1,6 +1,7 @@
 "use client";
 
 import AppPreview from "@/components/common/appPreview";
+import FooterInfo from "@/components/layout/footerInfo";
 import BackGroundBlur from "@/components/common/backgroundBlur";
 import RadiantBox from "@/components/common/radiantBox";
 import { MAX_LAYOUT_WIDTH } from "@/constants/layout";
@@ -117,11 +118,7 @@ const Home: React.FC = () => {
             </RadiantBox>
         </div>
 
-        <div className="relative flex flex-col items-center justify-center w-full h-[66vh] sm:h-screen mt-24">
-          <div id="mainInfo" className="flex flex-col items-center">
-          </div>
-          <BackGroundBlur/>
-        </div>
+        <FooterInfo title={"모집 분야는 다음과 같아요"}/>
 
       </div>
     </div>
