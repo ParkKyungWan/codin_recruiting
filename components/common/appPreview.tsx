@@ -11,7 +11,7 @@ const AppPreview: React.FC = () => {
         'images/appPreviews/sampleScreen4.png',
         'images/appPreviews/sampleScreen5.png',
     ]
-    const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1, containScroll: 'trimSnaps', align:'center' });
+    const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1, containScroll: 'trimSnaps', align:'center', loop: true, });
     const [selectedIndex, setSelectedIndex] = useState(0)
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const AppPreview: React.FC = () => {
                 {images.map((src, i) => (
                 <div
                     key={i}
-                    className={"shrink-0 px-1 w-1/2 md:w-1/4 "}
+                    className={"shrink-0 px-1 w-1/2 md:w-1/3 lg:w-1/4 transition-opacity bg-[#0a0a0a] "+ ((selectedIndex===i)? " " : "py-[6px] sm:py-[12px] opacity-40")}
                 >
                     <img src={src} className="rounded-xl w-full h-auto object-cover" />
                 </div>
