@@ -32,6 +32,7 @@
 }
 
 @layer utilities {
+  
   .text-sub {
     color: rgba(255,255,255,0.6);
   }
@@ -52,24 +53,6 @@
     font-size: 18px;
   }
 
-  @keyframes textGradient {
-    from {
-      background-position: 200% 0;
-    }
-    to {
-      background-position: 0 0;
-    }
-  }
-  .font-gradient{
-    background: linear-gradient(to right, rgba(167,218,255,1), rgba(167,218,255,0.8), rgba(167,218,255,0.6), rgba(167,218,255,0.6), rgba(167,218,255,0.8), rgba(167,218,255,1));
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textGradient 2.5s linear forwards infinite;
-
-  }
-  
-
   @media(max-width: 640px){
     .font-titleMega{
       font-size: 20px;
@@ -84,6 +67,29 @@
       font-size: 12px;
     }
   }
+
+  @keyframes textGradient {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: 0 0;
+    }
+  }
+
+  .font-gradient{
+    background: linear-gradient(to right, rgba(167,218,255,1), rgba(167,218,255,0.8), rgba(167,218,255,0.6), rgba(167,218,255,0.6), rgba(167,218,255,0.8), rgba(167,218,255,1));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradient 2.5s linear forwards infinite;
+
+    &.slow{
+      animation: textGradient 6s linear forwards infinite;
+    }
+
+  }
+
 
 }
 /* 다크 모드 설정
@@ -111,8 +117,8 @@ button{
     transition: transform 0.2s ease;
   }
   &:active{
-    transform: translateY(0px);
-    opacity: 88%;
+    transform: translateY(1.7px);
+    opacity: 77%;
   }
 }
 
