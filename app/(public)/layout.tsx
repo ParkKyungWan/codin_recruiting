@@ -7,9 +7,9 @@ export default function PublicLayout({
     children: React.ReactNode;
   }>) {
     return (
-    <div className="flex flex-col items-center">    
+    <div className="flex flex-col items-center overflow-visible">    
         <Header/>
-        <div className="flex-col mt-[68px] w-full" style={{maxWidth: MAX_LAYOUT_WIDTH}}>
+        <div className="flex-col w-full overflow-visible">
             {children}
         </div>
     </div>

@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="w-full h-full overflow-x-hidden">
-      <body className={`antialiased w-full h-full overflow-x-hidden`} >
+    <html lang="en" className="w-full h-full overflow-visible">
+      <body className={`antialiased w-full h-full overflow-visible`} >
         {children}
         <InteractiveCursur/>
       </body>

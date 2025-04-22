@@ -111,7 +111,7 @@ button{
     transition: transform 0.2s ease;
   }
   &:active{
-    transform: scale(0.95);
+    transform: translateY(0px);
     opacity: 88%;
   }
 }

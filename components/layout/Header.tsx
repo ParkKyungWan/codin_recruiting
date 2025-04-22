@@ -11,8 +11,8 @@ const Header: React.FC = () => {
   }
   
     return (
-      <header className="fixed top-0 left-0 z-100 w-full flex justify-center items-center px-4 sm:px-8 h-[68px] max-h-[68px]">
-        <div className="flex justify-between items-center w-full gap-4 py-4 backdrop-blur-md" style={{ maxWidth: MAX_LAYOUT_WIDTH }}>
+      <header className="fixed top-0 left-0 z-100 w-full flex justify-center backdrop-blur-md items-center px-4 sm:px-8 h-[68px] max-h-[68px]">
+        <div className="flex justify-between items-center w-full gap-4 py-4" style={{ maxWidth: MAX_LAYOUT_WIDTH }}>
             <button id="LogoArea" onClick={()=>{handleLogoClick()}}>
                 <img src="/logo/logo_recuiting.png" className="min-w-[102px] sm:min-w-[162px]" width={162}/>
             </button>
