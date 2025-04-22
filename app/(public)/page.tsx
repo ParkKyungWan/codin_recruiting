@@ -4,6 +4,7 @@ import AppPreview from "@/components/common/appPreview";
 import BackGroundBlur from "@/components/common/backgroundBlur";
 import RadiantBox from "@/components/common/radiantBox";
 import { MAX_LAYOUT_WIDTH } from "@/constants/layout";
+import { RECRUITMENT_END_DATE, RECUITMENT_START_DATE } from "@/constants/recruitment";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Suspense, useEffect, useRef, useState } from "react";
@@ -11,6 +12,24 @@ import { Suspense, useEffect, useRef, useState } from "react";
 
 
 const Home: React.FC = () => {
+
+  /*지금 시간에도 (시간) 운영되고 있어요 <-를 위한 Date*/
+  const [time, setTime] = useState<String>("00:00:00");
+
+  const getCurrentTime = () => {
+    const now = new Date();
+    return now.toLocaleTimeString('en-GB', { hour12: false });
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(getCurrentTime());
+    }, 1000); 
+
+    return () => clearInterval(interval); 
+  }, []);
+
+  /*gsap 스크롤 트리거*/
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray('.animate-on-scroll').forEach((el: any) => {
@@ -24,7 +43,7 @@ const Home: React.FC = () => {
           ease: 'power2.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 80%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -42,7 +61,7 @@ const Home: React.FC = () => {
           ease: 'power2.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 80%',
+            start: 'top 60%',
             toggleActions: 'play none none none',
           },
         }
@@ -69,19 +88,41 @@ const Home: React.FC = () => {
               <h1 className="font-titleMega font-medium">코딘은 어떤 팀인가요?</h1>
               <button className="font-gradient font-pressable font-subtitle font-light mt-[12px]">자세히 알아보기 {'>'} </button>
             </RadiantBox>
-          </div>
-
-          <div className="animate-on-scroll-delay flex w-full justify-end">
-            <img src="/images/arrowDown.png" className="mt-6 mr-[32px] w-[36px] sm:mt-12 sm:mr-[64px] sm:w-[72px]"/>
+            <div className="animate-on-scroll-delay flex flex-col w-full items-end">
+              <img src="/images/arrowDown.png" className="mt-6 mr-[28px] w-[36px] sm:mt-12 sm:mr-[64px] sm:w-[72px]"/>
+              <p className="font-subtitle mt-3">좌우로 넘기며 확인해보세요!</p>
+            </div>
           </div>
         </div>
 
-        <div className="animate-on-scroll-delay relative flex w-full items-center justify-center mt-6">
+        <div className="animate-on-scroll-delay relative flex flex-col gap-8 w-full items-center justify-center mt-12">
             <AppPreview/>
         </div>
 
+        <div className="animate-on-scroll flex flex-col items-center justify-center mt-36 mx-4 text-center">
+          <h2 className="font-title">이 순간에도 <span className="text-[#3E90D5]">{time}</span> 인천대 학생들<br className="block sm:hidden" />에게 운영되고 있어요</h2>
+          <button>
+            <img src="/logo/appstore.png" className="w-[362px] opacity-80"/>
+          </button>
+        </div>
 
-        <div className="min-h-[500px]"/>
+        <div className="animate-on-scroll flex flex-col items-center justify-center mt-40">
+          <img src="/images/dropEmogis.png" className="w-[121px]"/>
+        </div>
+
+        <div className="animate-on-scroll flex flex-col items-center justify-center mt-16">
+            <RadiantBox>
+              <h1 className="font-titleMega font-medium">지금이 바로, 코딘의 첫 모집기간</h1>
+              <button className="font-gradient font-pressable font-subtitle font-light mt-2">누구보다 빠르게 지원하기 {'>'} </button>
+            </RadiantBox>
+        </div>
+
+        <div className="relative flex flex-col items-center justify-center w-full h-[66vh] sm:h-screen mt-24">
+          <div id="mainInfo" className="flex flex-col items-center">
+          </div>
+          <BackGroundBlur/>
+        </div>
+
       </div>
     </div>
   );
