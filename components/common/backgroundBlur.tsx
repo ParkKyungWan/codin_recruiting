@@ -16,7 +16,7 @@ type Circle = {
     dy: number,
 }
 
-const BackGroundBlur: React.FC = ({}:BackGroundBlurProps) => {
+const BackGroundBlur: React.FC<BackGroundBlurProps> = ({}) => {
 
     const randomSpeed = (baseNum :number) =>{
         const getPositiveValue = () => (Math.random()*baseNum + baseNum/2);  
