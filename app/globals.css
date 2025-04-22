@@ -39,6 +39,12 @@
     color: #A9DBFF;
   }
 
+  .font-titleMega{
+    font-size: 28px;
+  }
+  .font-subtitleMega{
+    font-size: 24px;
+  }
   .font-title{
     font-size: 20px;
   }
@@ -47,6 +53,12 @@
   }
 
   @media(max-width: 640px){
+    .font-titleMega{
+      font-size: 20px;
+    }
+    .font-subtitleMega{
+      font-size:18px;
+    }
     .font-title{
       font-size: 16px;
     }
@@ -79,6 +91,10 @@ button{
   &:hover{
     transform: translateY(-1.7px);
     transition: transform 0.2s ease;
+  }
+  &:active{
+    transform: scale(0.95);
+    opacity: 88%;
   }
 }
 
