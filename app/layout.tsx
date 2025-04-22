@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import InteractiveCursur from "@/components/common/interactiveCursur";
 
 export const metadata: Metadata = {
   title: "코딘 리쿠르팅",
@@ -15,6 +16,7 @@ export default function RootLayout({
     <html lang="en" className="w-full h-full overflow-x-hidden">
       <body className={`antialiased w-full h-full overflow-x-hidden`} >
         {children}
+        <InteractiveCursur/>
       </body>
     </html>
   );
