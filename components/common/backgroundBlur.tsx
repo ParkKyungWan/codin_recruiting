@@ -22,7 +22,6 @@ const BackGroundBlur = ({}:BackGroundBlurProps) => {
         const getPositiveValue = () => (Math.random()*baseNum + baseNum/2);  
         const getNegativeValue = () => -1* (Math.random()*baseNum + baseNum/2);  
         const result = Math.random() < 0.5 ? getPositiveValue() : getNegativeValue();
-        console.log(result);
         return result;
     }
 
