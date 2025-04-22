@@ -83,8 +83,10 @@ const BackGroundBlur: React.FC<BackGroundBlurProps> = ({}) => {
                         y: circle.y,
                     }}
                     animate={{
-                        x: [circle.x, circle.x + circle.dx],
-                        y: [circle.y, circle.y + circle.dy],
+                        /*x: [circle.x, circle.x + circle.dx],
+                        y: [circle.y, circle.y + circle.dy], 성능이슈*/
+                        x: circle.x,
+                        y: circle.y,
                     }}
                     transition={{
                         duration: 20,

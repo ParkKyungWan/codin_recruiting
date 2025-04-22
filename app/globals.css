@@ -52,6 +52,24 @@
     font-size: 18px;
   }
 
+  @keyframes textGradient {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: 0 0;
+    }
+  }
+  .font-gradient{
+    background: linear-gradient(to right, rgba(167,218,255,1), rgba(167,218,255,0.8), rgba(167,218,255,0.6), rgba(167,218,255,0.6), rgba(167,218,255,0.8), rgba(167,218,255,1));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradient 2.5s linear forwards infinite;
+
+  }
+  
+
   @media(max-width: 640px){
     .font-titleMega{
       font-size: 20px;

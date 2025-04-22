@@ -7,6 +7,12 @@ const InteractiveCursur: React.FC = () => {
   const [isClicking, setIsClicking] = useState(false);
   const [visible, setVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const isMouse = window.matchMedia('(pointer: fine)').matches;
+    setEnabled(isMouse);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -47,6 +53,7 @@ const InteractiveCursur: React.FC = () => {
       });
     }
   }, []);
+  if (!enabled) return null; 
   if (!visible) return null;
   return (
     <>
