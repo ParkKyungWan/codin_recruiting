@@ -14,6 +14,7 @@ import { RECUITMENT_START_DATE, RECRUITMENT_END_DATE } from "@/constants/recruit
 import { useRouter } from "next/navigation";
 import BackGroundBlur from "../common/backgroundBlur";
 import { useState } from "react";
+import Footer from "./footer";
 
 const FooterInfoItem: React.FC<RecuitInfoItemProps> = ({titleEN, titleKR, explain, iconPATH, isActive}) =>{
     
@@ -24,7 +25,7 @@ const FooterInfoItem: React.FC<RecuitInfoItemProps> = ({titleEN, titleKR, explai
              id="RecuitInfoContainer" className="flex flex-col w-full justify-start items-center">
              
             <div id="RecuitInfoItem" className={"w-full rounded-4xl bg-[rgba(217,217,217,0.06)] border-2 border-[rgba(255,255,255,0.06)] transition-transform duration-500 "
-                +(isHovered ? "scale-105 bg-[rgba(217,217,217,0.24)] py-4 px-[24px]" : "py-4 px-10" )}
+                +(isHovered ? "bg-[rgba(217,217,217,0.24)] py-4 px-[24px]" : "py-4 px-10" )}
                  style={{ boxShadow: '0 4px 10px rgba(255, 255, 255, 0.06)' }}>
                 
                 <h1 id="RecuitPartName" className={"font-title font-light flex justify-center items-center "
@@ -42,7 +43,13 @@ const FooterInfo: React.FC<RecruitInfoProps> = ({title}) => {
   const router = useRouter();
 
     return (
-        <div className="flex flex-col items-center justify-start">
+        <div className="flex flex-col items-center justify-start relative">
+
+            <div className="flex flex-col items-center justify-center w-full h-[66vh] sm:h-screen absolute translate-y-[60%]">
+                <BackGroundBlur/>
+            </div> 
+
+
             <div className="flex justify-end items-center pr-[50%] mt-36 ">
                 <img src="/images/recruitingDeco.png" className="hidden sm:block w-[327px] translate-x-[95%] opacity-55"/>
             </div>
@@ -59,9 +66,8 @@ const FooterInfo: React.FC<RecruitInfoProps> = ({title}) => {
                 <FooterInfoItem titleEN="FE Developer" titleKR="프론트엔드 개발자" explain="디자인을 구현하고 인터랙션을 개발해요" iconPATH="/icons/recruitParts/developerIcon.png"/>
                 <FooterInfoItem titleEN="BE Developer" titleKR="백엔드 개발자" explain="데이터를 설계하고 서버 API를 구현해요" iconPATH="/icons/recruitParts/developerIcon.png"/>
             </div>
-
-            <div className="absolute flex flex-col items-center justify-center w-full h-[66vh] sm:h-screen translate-y-[60%]">
-                <BackGroundBlur/>
+            <div className="w-full mt-52 sm:mt-82">
+                <Footer/>
             </div>
         </div>
     );
