@@ -68,7 +68,7 @@ const BackGroundBlur: React.FC<BackGroundBlurProps> = ({}) => {
     }, []);
 
     return (
-        <div ref={containerRef} className="absolute left-0 top-0 flex w-full h-full overflow-visible" style={{filter: `blur(50px)`}}>
+        <div ref={containerRef} className="absolute left-0 top-0 flex w-full h-full overflow-visible " style={{filter: `blur(50px)`}}>
             {circles.map((circle)=>(
                 <motion.div
                     key={circle.id}
@@ -95,7 +95,6 @@ const BackGroundBlur: React.FC<BackGroundBlurProps> = ({}) => {
                     }}
                 />   
             ))}
-            <div className="absolute w-full h-full left-0 top-0"/>
         </div>
     )
 
