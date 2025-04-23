@@ -1,26 +1,140 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --font-Goorm: 'goormSans', sans-serif;
+}
+
+@font-face {
+  font-family: 'goormSans';
+  src: url('/fonts/goorm-sans-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'goormSans';
+  src: url('/fonts/goorm-sans-medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'goormSans';
+  src: url('/fonts/goorm-sans-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-Goorm);
 }
 
+@layer utilities {
+  
+  .text-sub {
+    color: rgba(255,255,255,0.6);
+  }
+  .text-highlight {
+    color: #A9DBFF;
+  }
+
+  .font-titleMega{
+    font-size: 28px;
+  }
+  .font-subtitleMega{
+    font-size: 24px;
+  }
+  .font-title{
+    font-size: 20px;
+  }
+  .font-subtitle{
+    font-size: 18px;
+  }
+
+  @media(max-width: 640px){
+    .font-titleMega{
+      font-size: 20px;
+    }
+    .font-subtitleMega{
+      font-size:18px;
+    }
+    .font-title{
+      font-size: 16px;
+    }
+    .font-subtitle{
+      font-size: 12px;
+    }
+  }
+
+  @keyframes textGradient {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: 0 0;
+    }
+  }
+
+  .font-gradient{
+    background: linear-gradient(to right, rgba(167,218,255,1), rgba(167,218,255,0.8), rgba(167,218,255,0.6), rgba(167,218,255,0.6), rgba(167,218,255,0.8), rgba(167,218,255,1));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradient 2.5s linear forwards infinite;
+
+    &.slow{
+      animation: textGradient 6s linear forwards infinite;
+    }
+
+  }
+
+
+}
+/* 다크 모드 설정
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    
   }
+}
+*/
+*,
+*::before,
+*::after {
+  cursor: none !important;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(255,255,255,0.88);
+  font-family: var(--font-Goorm);
+}
+
+button{
+  &:hover{
+    transform: translateY(-1.7px);
+    transition: transform 0.2s ease;
+  }
+  &:active{
+    transform: translateY(1.7px);
+    opacity: 77%;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.0); /* 스크롤 트랙 배경 검정 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555; /* 스크롤바 손잡이 */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }
