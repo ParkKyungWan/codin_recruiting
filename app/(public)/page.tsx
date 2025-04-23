@@ -102,7 +102,7 @@ const Home: React.FC = () => {
 
         <div className="animate-on-scroll flex flex-col items-center justify-center mt-36 mx-4 text-center">
           <h2 className="font-title">이 순간에도 <span className="text-[#3E90D5]">{time}</span> 인천대 학생들<br className="block sm:hidden" />에게 운영되고 있어요</h2>
-          <button>
+          <button onClick={()=>location.href="https://apps.apple.com/kr/app/codin/id6742378374"}>
             <img src="/logo/appstore.png" className="w-[362px] opacity-80"/>
           </button>
         </div>
