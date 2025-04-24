@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         <div>
             
         </div>
-        <div id="logoAndInfo" className="flex gap-4">
+        <div id="logoAndInfo" className="flex gap-4 mb-4">
             <div id="Info" className="flex flex-col text-[12px] text-sub opacity-33 text-end">
                 <p>Instagram. <b>@codin_inu</b></p>
                 <p>DM으로 궁금하신 사항을 질문해주세요</p>
