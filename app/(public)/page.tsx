@@ -87,7 +87,7 @@ const Home: React.FC = () => {
       <div className="flex flex-col items-center">
         <div className="animate-on-scroll ">
           <RadiantBox>
-            <h1 className="font-titleMega font-medium">코딘은 어떤 팀인가요?</h1>
+            <h1 className="font-titleMega font-medium whitespace-nowrap">코딘은 어떤 팀인가요?</h1>
             <button className="font-gradient font-pressable font-subtitle font-light mt-[12px]">자세히 알아보기 {'>'} </button>
           </RadiantBox>
           <div className="animate-on-scroll-delay flex flex-col w-full items-end">
