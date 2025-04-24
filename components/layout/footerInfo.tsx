@@ -51,7 +51,7 @@ const FooterInfo: React.FC<RecruitInfoProps> = ({title}) => {
 
 
             <div className="flex justify-end items-center pr-[50%] mt-36 ">
-                <img src="/images/recruitingDeco.png" className="hidden sm:block w-[327px] translate-x-[95%] opacity-55"/>
+                <img src="/images/recruitingDeco.png" className="hidden sm:block w-[327px] translate-x-[95%] opacity-0"/>
             </div>
 
             <div className="flex flex-col items-center mt-6 sm:mt-12">
