@@ -11,7 +11,7 @@ export default function PublicLayout({
         <Header/>
         <div className="flex-col w-full overflow-visible">
           <div className="flex flex-col items-center overflow-hidden pt-[68px]" >
-            <div style={{maxWidth: MAX_LAYOUT_WIDTH}} >
+            <div className="w-full" style={{maxWidth: MAX_LAYOUT_WIDTH}} >
               {children}
             </div>
           </div>

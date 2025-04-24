@@ -5,6 +5,7 @@ import { MAX_LAYOUT_WIDTH } from "@/constants/layout";
 import { motion } from 'framer-motion';
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import FooterInfo from "./footerInfo";
 
 const PartsDropDown: React.FC = () => {
   const router = useRouter();
@@ -30,8 +31,8 @@ const PartsDropDown: React.FC = () => {
   }
 
   return (
-    <div className="absolute z-[150] left-0 top-10.5 -translate-x-5 text-[15px]">
-      <div id="dropDownList" className="w-full flex flex-col items-center justify-center mb-0.5 rounded-lg bg-[rgba(0,0,0,0.88)] backdrop-blur-md border shadow-[0_0_24px_rgba(255,255,255,0.08)] border-white/10 px-4 py-3 gap-4"> 
+    <div className="absolute z-[150] left-0 top-10.5 -translate-x-6 text-[15px]">
+      <div id="dropDownList" className="w-full flex flex-col items-center justify-center mb-0.5 rounded-xl bg-[rgba(0,0,0,0.88)] backdrop-blur-md border shadow-[0_0_24px_rgba(255,255,255,0.04)] border-white/10 px-4 py-3 gap-4"> 
         <button className="font-gradient" onClick={()=>{router.push("/introduction")}}>
           Codin 코딘
         </button>
@@ -45,7 +46,6 @@ const PartsDropDown: React.FC = () => {
             </motion.div>
           ))}
         </motion.div>
-
       </div>
     </div>
   );
