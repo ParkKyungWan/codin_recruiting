@@ -74,7 +74,7 @@ const Home: React.FC = () => {
 
 
   return (
-    <div>
+    <div className="w-full">
       <div className="relative flex flex-col items-center justify-center w-full h-[66vh] sm:h-screen">
         <div id="mainInfo" className="flex flex-col items-center pb-[80px]">
           <img id="mainInfoImg" src="/logo/logo.png" className="w-[188px] sm:w-[265px]"/>
