@@ -56,9 +56,9 @@ const Introduction: React.FC = () => {
                     <RadiantBox>
                         <h3 className='mb-6 font-titleMega'>다음 목표도 소개할게요!</h3>
                         <div className='flex flex-col justify-center items-start gap-3'>
-                            <div className='flex whitespace-nowrap items-center gap-3 font-subtitle sm:font-title'><img src="/icons/check.png" className='w-[24px] h-[24px]'/><p>학생회 공지, 간식 나눔 등 학교 생활 관련 기능 구현</p></div>
+                            <div className='flex whitespace-nowrap items-center gap-3 font-subtitle sm:font-title'><img src="/icons/check.png" className='w-[24px] h-[24px]'/><p>학생회 공지 등 새로운 기능 구현</p></div>
                             <div className='flex whitespace-nowrap items-center gap-3 font-subtitle sm:font-title'><img src="/icons/check.png" className='w-[24px] h-[24px]'/><p>전체 페이지를 최적화된 UI/UX로 개선</p></div>
-                            <div className='flex whitespace-nowrap items-center gap-3 font-subtitle sm:font-title'><img src="/icons/check.png" className='w-[24px] h-[24px]'/><p>프레임워크 변경을 통한 서비스의 품질과 속도 개선</p></div>
+                            <div className='flex whitespace-nowrap items-center gap-3 font-subtitle sm:font-title'><img src="/icons/check.png" className='w-[24px] h-[24px]'/><p>프레임워크 변경을 통한 로딩 속도 개선</p></div>
                         </div>
                     </RadiantBox>
                     <p className='mt-8 sm:mt-16 font-subtitle text-sub'>( 팀원들의 대기업 진출도 목표하고 있어요 ... )</p>
