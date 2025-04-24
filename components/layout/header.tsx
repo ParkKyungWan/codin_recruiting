@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const PartsDropDown: React.FC = () => {
+  const router = useRouter();
   const parentsVariants = {
     hidden: {
       height: 0,
@@ -29,18 +30,22 @@ const PartsDropDown: React.FC = () => {
   }
 
   return (
-    <div className="absolute z-[150] left-0 top-10.5 -translate-x-3">
+    <div className="absolute z-[150] left-0 top-10.5 -translate-x-3 text-[15px]">
       <div id="dropDownList" className="w-full flex flex-col items-center justify-center mb-0.5 rounded-lg bg-[rgba(0,0,0,0.88)] backdrop-blur-md border shadow-[0_0_24px_rgba(255,255,255,0.08)] border-white/10 px-4 py-1.5 gap-3"> 
-        <button className="font-gradient">Codin 코딘</button>
+        <button className="font-gradient" onClick={()=>{router.push("/introduction")}}>
+          Codin 코딘
+        </button>
+
         <motion.div id="dropDownList" className="w-full flex flex-col items-center justify-center gap-3"
           layout variants={parentsVariants} initial="hidden" animate="show"
         > 
           { RECUITMENT_PARTS.map((part, index)=>(
             <motion.div key={index} variants={childrenVariants}>
-              <button className="text-sub hover:text-white font:font-bold">{part.simple}</button>
+              <button onClick={()=>{router.push(`/recuitmentParts/${part.link}`)}} className="text-sub hover:text-white font:font-bold">{part.simple}</button>
             </motion.div>
           ))}
         </motion.div>
+
       </div>
     </div>
   );
