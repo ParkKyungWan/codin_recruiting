@@ -15,11 +15,13 @@ import { Suspense, useEffect, useRef, useState } from "react";
 const Home: React.FC = () => {
 
   /*지금 시간에도 (시간) 운영되고 있어요 <-를 위한 Date*/
-  const [time, setTime] = useState<String>("00:00:00");
+  const [time, setTime] = useState<String>("오전 00:00:00");
 
   const getCurrentTime = () => {
     const now = new Date();
-    return now.toLocaleTimeString('en-GB', { hour12: false });
+    const hour = now.getHours(); // 0 ~ 23
+    const meridiem = hour < 12 ? "오전" : "오후";
+    return meridiem +" "+ now.toLocaleTimeString('en-GB', { hour12: false });
   }
 
   useEffect(() => {
@@ -101,7 +103,7 @@ const Home: React.FC = () => {
         </div>
 
         <div className="animate-on-scroll flex flex-col items-center justify-center mt-36 mx-4 text-center">
-          <h2 className="font-title">이 순간에도 <span className="text-[#3E90D5]">{time}</span> 인천대 학생들<br className="block sm:hidden" />에게 운영되고 있어요</h2>
+          <h2 className="font-title">지금, <span className="text-[#3E90D5]">{time}</span> 에도 인천대 학생들<br className="block sm:hidden" />에게 운영되고 있어요</h2>
           <button onClick={()=>location.href="https://apps.apple.com/kr/app/codin/id6742378374"}>
             <img src="/logo/appstore.png" className="w-[362px] opacity-80"/>
           </button>
