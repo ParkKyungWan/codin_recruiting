@@ -1,7 +1,53 @@
+"use client";
+import AppPreuse from '@/components/common/appPreuse';
+import BackGroundBlur from '@/components/common/backgroundBlur';
+import Footer from '@/components/layout/footer';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
 const Introduction: React.FC = () => {
+    
+    const [isAnimating, setIsAnimating] = useState<boolean>(true); 
+
+    useEffect(() => {
+        window.scrollTo(0, 0); 
+        setTimeout(() => {
+            setIsAnimating(false);
+        }, 900); 
+    }, []);
+
     return (
-    <div>    
-        소개
+    <div className='w-full pb-20'>
+        <motion.div className="fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] flex flex-col items-center justify-center w-full h-[66vh] sm:h-screen"
+            initial={{ opacity: 0 }} animate={{ opacity: [1 , 0.5], filter: "blur(16px)" }} transition={{ duration:0.3 , filter: {delay:1, duration: 1.5} }}>
+            <motion.div id="mainInfo" className="flex flex-col items-center pb-[80px]"
+                initial={{ opacity: 1 }} animate={{ opacity: 0 }} transition={{ delay:1.5, duration: 0.3, }}>
+                <img id="mainInfoImg" src="/logo/logo.png" className="w-[360px] sm:w-[519px] max-w-[80%]"/>
+            </motion.div>
+        </motion.div>
+        <div className='fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] flex flex-col items-center justify-center w-full h-[66vh] sm:h-screen'>
+            <BackGroundBlur/>
+        </div>
+
+        <motion.div className="relative h-[100vh] flex flex-col items-center justify-center"
+            initial={{ top: "100vh", filter: "brightness(0.55)" }} animate={{ top: 0, filter: "brightness(1)" }} transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1], filter:{ delay:0.9 } }}>
+            <AppPreuse/>
+        </motion.div >
+        
+        { !isAnimating &&
+            <motion.div className='relative flex flex-col items-center justify-center'
+                initial={{opacity:0}} animate={{opacity:1}} transition={{duration:0.3}}>
+
+                <h1 className='mt-5 font-titleMega'>코딘을 소개할게요</h1>
+                <p className='mt-3 sm:mt-5 font-subtitle text-center text-sub'>정보기술대학 공식SNS 공모전에서 <span className='text-highlight'>대상(1위)</span>을 수상하고 
+                <br/>25.04.01 부터 애플리케이션 서비스를 시작했어요 </p>
+
+                <img src="/images/meAndInu.png" className='mt-12 w-[431px] h-[431px] '/>
+
+                <p className='mt-6 sm:mt-12 font-subtitle text-center text-sub'>학교생활에 필요한 서비스를 개발하고, <span className='text-highlight'>실제 서비스</span>로 운영해요 
+                <br/>공식 도메인 (codin.inu.ac.kr) 발급 등 학교의 지원을 받고 있어요 </p>
+            </motion.div>
+        }
     </div>
     );
 }
