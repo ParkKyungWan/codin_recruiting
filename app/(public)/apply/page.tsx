@@ -1,4 +1,5 @@
 "use client";
+import { RECUITMENT_PARTS } from "@/constants/recruitment";
 import React, { useState } from "react";
 
 const Introduction = () => {
@@ -9,29 +10,49 @@ const Introduction = () => {
     email: "",
     school: "",
     degree: "",
+    major: "",
     portfolioLink: "",
+    intro1: "",
+    intro2: "",
+    intro3: "",
   });
-
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setSelectedFile(e.target.files[0]);
-    }
-  };
-
-  const handleSubmit = () => {
-    const { field, name, phone, email, school, degree, portfolioLink } = formData;
-    if (!field || !name || !phone || !email || !school || !degree || (!portfolioLink && !selectedFile)) {
+  const handleSubmit = async () => {
+    const { field, name, phone, email, school, degree, major, portfolioLink, intro1, intro2, intro3 } = formData;
+    if (!field || !name || !phone || !email || !school || !degree || !portfolioLink) {
       alert("필수 항목을 모두 입력해 주세요.");
       return;
     }
-    alert("제출 완료!");
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("entry.394809328", field);
+    formDataToSend.append("entry.150981278", name);
+    formDataToSend.append("entry.671001125", phone);
+    formDataToSend.append("entry.893830862", email);
+    formDataToSend.append("entry.214807255", school);
+    formDataToSend.append("entry.443179587", degree);
+    formDataToSend.append("entry.71099981", major);
+    formDataToSend.append("entry.1527243977", intro1);
+    formDataToSend.append("entry.1367446607", intro2);
+    formDataToSend.append("entry.1467220363", intro3);
+    formDataToSend.append("entry.1673827273", portfolioLink);
+
+    try {
+      await fetch("https://docs.google.com/forms/d/e/1FAIpQLSdEsxKvuU541xOZt003OyObTHAwTszeYQ3l801l-SJzo_ahwA/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: formDataToSend,
+      });
+      alert("제출 완료되었습니다!");
+    } catch (error) {
+      console.error(error);
+      alert("제출 실패. 다시 시도해주세요.");
+    }
   };
 
   return (
@@ -45,7 +66,9 @@ const Introduction = () => {
         </label>
         <select name="field" value={formData.field} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3">
           <option value="">선택하세요</option>
-          <option>FE Developer 프로젝트</option>
+          {RECUITMENT_PARTS.map((part, index) => (
+            <option key={index}>{part.titleKR}</option>
+          ))}
         </select>
       </div>
 
@@ -65,55 +88,52 @@ const Introduction = () => {
           학교 / 최종 학력 <span className="text-sky-500">*</span>
         </label>
         <input name="school" type="text" placeholder="코딩대학교" value={formData.school} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-3" />
-        <select name="degree" value={formData.degree} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3">
+        <select name="degree" value={formData.degree} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-3">
           <option value="">선택하세요</option>
           <option>재학 중이에요</option>
+          <option>휴학 중이에요</option>
+          <option>졸업 예정이에요</option>
+          <option>이미 졸업했어요</option>
         </select>
       </div>
 
       {/* 전공명 */}
       <div className="mb-10">
         <label className="block font-semibold mb-3">전공명</label>
-        <input type="text" placeholder="컴퓨터공학부" className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3" />
+        <input name="major" type="text" placeholder="컴퓨터공학부" value={formData.major} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3" />
       </div>
 
       {/* 자기소개서 질문 3개 */}
       <div className="mb-10">
-        <label className="block font-semibold mb-4">
-          1. 대학 생활 중 가장 열정을 쏟았던 활동은 무엇이며, 어떤 역할을 맡았는지 서술해주세요. (500자 이내)
+        <label className="block font-semibold mb-2">
+          1. 대학 생활 중 가장 열정을 쏟았던 활동은 무엇이며, 어떤 역할을 맡았는지 서술해주세요. <span className="text-sub">({formData.intro1.length} / 500자 이내)</span>
         </label>
-        <textarea className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
+        <textarea name="intro1" value={formData.intro1} onChange={handleChange} maxLength={500} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
       </div>
 
       <div className="mb-10">
-        <label className="block font-semibold mb-4">
-          2. 협업 과정에서, 갈등을 해결하기 위한 본인만의 방식이 있다면 서술해주세요 (500자 이내)
+        <label className="block font-semibold mb-2">
+          2. 협업 과정에서, 갈등을 해결하기 위한 본인만의 방식이 있다면 서술해주세요. <span className="text-sub">({formData.intro2.length} / 500자 이내)</span>
         </label>
-        <textarea className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
+        <textarea name="intro2" value={formData.intro2} onChange={handleChange} maxLength={500} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
       </div>
 
       <div className="mb-10">
-        <label className="block font-semibold mb-4">
-          3. 선택하신 분야에서 역량을 높이기 위해 노력하신 경험이 있다면 서술해주세요. (500자 이내)
+        <label className="block font-semibold mb-2">
+          3. 선택하신 분야에서 역량을 높이기 위해 노력하신 경험이 있다면 서술해주세요. <span className="text-sub">({formData.intro3.length} / 500자 이내)</span>
         </label>
-        <textarea className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
+        <textarea name="intro3" value={formData.intro3} onChange={handleChange} maxLength={500} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
       </div>
 
       {/* 포트폴리오 */}
       <div className="mb-16">
         <label className="block font-semibold mb-4">
-          포트폴리오 (최소 택 1) <span className="text-sky-500">*</span>
+          포트폴리오 <span className="text-sky-500">*</span>
         </label>
-        <p className="text-sm text-gray-400 mb-4">
-          지원자 분의 경험이 드러나는 포트폴리오 파일, 혹은 링크를 첨부해주세요
+        <p className="text-sm mb-4">
+          지원자 분의 경험이 드러나는 '링크'를 자유롭게 첨부해주세요<br/>
+          <span className="text-gray-400 pt-2">ex) 노션, 구글 드라이브, 깃허브, pdf파일 링크 ...</span>
         </p>
-        <label className="inline-block w-full text-center bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-2 cursor-pointer hover:bg-[rgba(255,255,255,0.05)] transition">
-          파일 선택하기
-          <input type="file" onChange={handleFileChange} className="hidden" />
-        </label>
-        {selectedFile && (
-          <p className="text-sm text-gray-300 mb-4">첨부: {selectedFile.name}</p>
-        )}
         <input name="portfolioLink" type="url" placeholder="https://example.sample.url ..." value={formData.portfolioLink} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3" />
       </div>
 
