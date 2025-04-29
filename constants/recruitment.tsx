@@ -1,7 +1,7 @@
 import { JSX } from "react";
 
-export const RECUITMENT_START_DATE = "25.04.00" as const;
-export const RECRUITMENT_END_DATE = "25.05.00" as const;
+export const RECUITMENT_START_DATE = "25.04.30" as const;
+export const RECRUITMENT_END_DATE = "25.05.11" as const;
 
 /* 파트 별 정보 */
 export const RECUITMENT_PARTS = [
@@ -61,21 +61,25 @@ export const JOINING_PROCESS : JSX.Element = <span className="text-sub">{"서류
 export const PARTS_REQUIREMENTS : Requirement[] = [
   {
     link: "pm",
-    skill: "",
+    skill: "Notion, 파워포인트 등",
     requirements: [
-      <span></span>,
+      <span>서비스/기능 기획 <span className="text-sub">및</span> 사용자 흐름 설계<span className="text-sub">에 관심 있는 분</span></span>,
+      <span>서비스 기획자<span className="text-sub">를 희망 진로로 삼는 분</span></span>,
+      <span><span className="font-gradient">실제 출시된 서비스 경험이 있으면 좋아요</span></span>,
     ],
   },
   {
     link: "designer",
-    skill: "",
+    skill: "Figma, 아이콘 디자인 등",
     requirements: [
-      <span></span>,
+      <span>UI/UX 디자인 프로젝트 경험 <span className="text-sub">이 있으신 분</span></span>,
+      <span>UI/UX 디자이너를<span className="text-sub"> 희망 진로로 삼는 분</span></span>,
+      <span><span className="font-gradient">Figma와 같은 디자인 툴 사용이 가능하신 분</span></span>,
     ],
   },
   {
     link: "frontend",
-    skill: "Next.js, ReactNative, Tailwind",
+    skill: "Next.js, ReactNative, Tailwind 등",
     requirements: [
       <span>Github를 활용한 협업<span className="text-sub">이 가능하신 분</span></span>,
       <span>React기반 프레임워크<span className="text-sub">에 익숙하신 분</span></span>,
@@ -84,9 +88,11 @@ export const PARTS_REQUIREMENTS : Requirement[] = [
   },
   {
     link: "backend",
-    skill: "",
+    skill: "Spring, Redis, MongoDB 등",
     requirements: [
-      <span></span>,
+      <span>Github를 활용한 협업<span className="text-sub">이 가능하신 분</span></span>,
+      <span>Spring Boot 기반의<span className="text-sub"> 개발이 가능하신 분</span></span>,
+      <span className="font-gradient">협업 프로젝트 경험이 있으신 분</span>,
     ],
   },
   
