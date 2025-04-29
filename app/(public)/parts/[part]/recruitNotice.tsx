@@ -35,7 +35,7 @@ const RecruitNotice = ({part} : RecuitNoticeProps) => {
           scrub: true,
           onUpdate: (self) => {
             const scrollAmount = self.scroll() - self.start;
-            button.style.transform = `translateY(${scrollAmount}px)`;
+            button.style.transform = `translateY(${scrollAmount > 0? scrollAmount : 0}px)`;
           },
         });
       }
