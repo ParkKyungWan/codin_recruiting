@@ -59,7 +59,7 @@ const Introduction = () => {
             </div>
             <audio
             ref={audioRef}
-            src="sounds/bildFlap.mp3"
+            src="/sounds/bildFlap.mp3"
             preload="auto"
             />
         </div>

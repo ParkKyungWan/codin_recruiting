@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react';
 
 const AppPreview: React.FC = () => {
     const images = [
-        'images/appPreviews/sampleScreen1.png',
-        'images/appPreviews/sampleScreen2.png',
-        'images/appPreviews/sampleScreen3.png',
-        'images/appPreviews/sampleScreen4.png',
-        'images/appPreviews/sampleScreen5.png',
+        '/images/appPreviews/sampleScreen1.png',
+        '/images/appPreviews/sampleScreen2.png',
+        '/images/appPreviews/sampleScreen3.png',
+        '/images/appPreviews/sampleScreen4.png',
+        '/images/appPreviews/sampleScreen5.png',
     ]
     const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1, containScroll: 'trimSnaps', align:'center', loop: true, });
     const [selectedIndex, setSelectedIndex] = useState(0)
