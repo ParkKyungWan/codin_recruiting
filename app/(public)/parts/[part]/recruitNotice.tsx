@@ -3,8 +3,9 @@ import FooterInfo from "@/components/layout/footerInfo";
 import { COMMON_REQUIREMENTS, JOINING_PROCESS, PARTS_REQUIREMENTS, RECUITMENT_PARTS, } from "@/constants/recruitment";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 interface RecuitNoticeProps {
   part: string;
@@ -13,11 +14,14 @@ interface RecuitNoticeProps {
 gsap.registerPlugin(ScrollTrigger);
 
 const RecruitNotice = ({part} : RecuitNoticeProps) => {
+  const router = useRouter();
 
   const REQUIREMENT = PARTS_REQUIREMENTS.find((item) => item.link === part);
   const PART_DATA = RECUITMENT_PARTS.find((item) => item.link === part);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const [initialScroll, setInitialScroll] = useState(0);
 
   useEffect(() => {
     if (!buttonRef.current || !wrapperRef.current) return;
@@ -36,7 +40,10 @@ const RecruitNotice = ({part} : RecuitNoticeProps) => {
           end: "bottom 50%",
           scrub: true,
           onUpdate: (self) => {
-            const scrollAmount = self.scroll() - self.start;
+            if (initialScroll === 0) {
+              setInitialScroll(self.scroll());
+            }
+            const scrollAmount = self.scroll() - initialScroll;
             button.style.transform = `translateY(${scrollAmount > translateLimit ? translateLimit : scrollAmount > 0 ? scrollAmount : 0}px)`;
           },
         });
@@ -126,7 +133,7 @@ const RecruitNotice = ({part} : RecuitNoticeProps) => {
             {/* 지원하기 버튼 */}
             <motion.div className="w-full relative"
               initial={{ opacity: 0 }} animate={{ opacity: 1, y: 0, transition: { delay: 0.3, duration: 0.3, ease: 'easeOut' } }}>
-              <button ref={buttonRef} className="w-[90%] sm:w-[80%] bg-gradient-to-r from-blue-400 to-blue-500 font-medium rounded-2xl px-8 py-3 shadow-lg lg:static fixed bottom-8 left-1/2 transform -translate-x-1/2 lg:translate-x-8 whitespace-nowrap lg:w-[230px]">
+              <button ref={buttonRef} onClick={()=>{router.push(`/apply?part=${PART_DATA?.titleKR}`)}} className="w-[90%] sm:w-[80%] bg-gradient-to-r from-blue-400 to-blue-500 font-medium rounded-2xl px-8 py-3 shadow-lg lg:static fixed bottom-8 left-1/2 transform -translate-x-1/2 lg:translate-x-8 whitespace-nowrap lg:w-[230px]">
                 지원하러 가기
               </button>
             </motion.div>
