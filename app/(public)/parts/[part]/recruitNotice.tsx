@@ -4,6 +4,7 @@ import { COMMON_REQUIREMENTS, JOINING_PROCESS, PARTS_REQUIREMENTS, RECUITMENT_PA
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 interface RecuitNoticeProps {
   part: string;
@@ -25,6 +26,7 @@ const RecruitNotice = ({part} : RecuitNoticeProps) => {
     const wrapper = wrapperRef.current;
 
     const mm = gsap.matchMedia();
+    const translateLimit = wrapper.offsetHeight - button.offsetHeight;
 
     mm.add(
       "(min-width: 1024px)", () => {
@@ -35,7 +37,7 @@ const RecruitNotice = ({part} : RecuitNoticeProps) => {
           scrub: true,
           onUpdate: (self) => {
             const scrollAmount = self.scroll() - self.start;
-            button.style.transform = `translateY(${scrollAmount > 0? scrollAmount : 0}px)`;
+            button.style.transform = `translateY(${scrollAmount > translateLimit ? translateLimit : scrollAmount > 0 ? scrollAmount : 0}px)`;
           },
         });
       }
@@ -70,19 +72,21 @@ const RecruitNotice = ({part} : RecuitNoticeProps) => {
   }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center w-full">
+      <motion.div className="flex flex-col items-center justify-center w-full">
         <div className="flex flex-col items-center lg:items-start justify-center w-full px-4 sm:w-[80%] lg:w-max py-8 md:py-25">
-          <div className="relative w-full lg:max-w-[88%] p-[1px] rounded-xl bg-[conic-gradient(from_0deg,_rgba(45,166,255,0.5)_2%,_rgba(13,153,255,0.5)_14%,_rgba(86,183,255,0.5)_31%,_rgba(147,209,255,0.5)_48%,_rgba(207,235,255,0.5)_65%,_rgba(132,202,255,0.5)_80%,_rgba(62,173,255,0.5)_96%)]">
-          <div className="bg-[#0a0a0a] w-full flex flex-col gap-3 h-full py-8 px-8 md:px-12 border-1 border-[rgba(0,0,0,1)] rounded-xl"
-            style={{ boxShadow: "0 0 50px 24px rgba(66, 156, 247, 0.125)"}}> 
+          
+          <motion.div className="relative w-full lg:max-w-[88%] p-[1px] rounded-xl bg-[conic-gradient(from_0deg,_rgba(45,166,255,0.5)_2%,_rgba(13,153,255,0.5)_14%,_rgba(86,183,255,0.5)_31%,_rgba(147,209,255,0.5)_48%,_rgba(207,235,255,0.5)_65%,_rgba(132,202,255,0.5)_80%,_rgba(62,173,255,0.5)_96%)]"
+            initial={{ x: -120, y: -200, scale: 1.2, opacity: 0 }} animate={{ x: 0, y: 0, scale: 1, opacity: 1, boxShadow: "0 0 50px 24px rgba(66, 156, 247, 0.125)" }} transition={{ type: "spring", stiffness: 200, damping: 15, boxShadow:{delay:0.3}}}>
+          <div className="bg-[#0a0a0a] w-full flex flex-col gap-3 h-full py-8 px-8 md:px-12 border-1 border-[rgba(0,0,0,1)] rounded-xl">
             <h3 className="font-titleMega font-bold">{PART_DATA?.titleEN} <br className="sm:hidden"/> {PART_DATA?.titleKR}</h3>
             <p className="font-subtitle whitespace-nowrap"><span className="hidden sm:inline pr-2">사용하는 기술</span><span className="font-gradient slow">{REQUIREMENT?.skill}</span></p>
           </div>
-          </div>
+          </motion.div>
   
-          <div ref={wrapperRef}  className="flex flex-col sm:flex-row items-start justify-between w-full lg:w-max mt-10 sm:mt-12 md:mt-24 gap-6 ">
+          <motion.div className="flex flex-col sm:flex-row items-start justify-between w-full lg:w-max mt-10 sm:mt-12 md:mt-24 gap-6 "
+            layout initial={{ opacity: 0 }} animate={{ opacity: 1, x:0, y: 0, transition: { delay: 0.2, duration: 0.3, ease: 'easeOut' }} }>
             {/* 내용 */}
-            <div className="flex px-2 sm:px-0 flex-col gap-12 text-sm leading-relaxed">
+            <div ref={wrapperRef} className="flex px-2 sm:px-0 flex-col gap-12 text-sm leading-relaxed">
               {/* 공통 조건 */}
               <div>
                 <div className="flex items-center gap-2 mb-2 font-title">
@@ -120,17 +124,19 @@ const RecruitNotice = ({part} : RecuitNoticeProps) => {
             </div>
   
             {/* 지원하기 버튼 */}
-            <div className="w-full relative">
+            <motion.div className="w-full relative"
+              initial={{ opacity: 0 }} animate={{ opacity: 1, y: 0, transition: { delay: 0.3, duration: 0.3, ease: 'easeOut' } }}>
               <button ref={buttonRef} className="w-[90%] sm:w-[80%] bg-gradient-to-r from-blue-400 to-blue-500 font-medium rounded-2xl px-8 py-3 shadow-lg lg:static fixed bottom-8 left-1/2 transform -translate-x-1/2 lg:translate-x-8 whitespace-nowrap lg:w-[230px]">
                 지원하러 가기
               </button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-        <div className="w-full">
+        <motion.div className="w-full"
+          initial={{ opacity: 0 }} animate={{ opacity: 1, y: 0, transition: { delay: 0.6, duration: 0.3, ease: 'easeOut' } }}>
           <FooterInfo title="다른 분야의 공고도 확인해보세요"/>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     );
 }
 

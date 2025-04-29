@@ -30,7 +30,7 @@ const PartsDropDown: React.FC = () => {
   }
 
   return (
-    <div className="absolute z-[150] left-0 top-10.5 -translate-x-6 text-[15px]">
+    <div className="absolute z-[110] left-0 top-0 pt-10.5 -translate-x-6 text-[15px]">
       <div id="dropDownList" className="w-full flex flex-col items-center justify-center mb-0.5 rounded-xl bg-[rgba(0,0,0,0.88)] backdrop-blur-md border shadow-[0_0_24px_rgba(255,255,255,0.04)] border-white/10 px-4 py-3 gap-4"> 
         <button className="font-gradient" onClick={()=>{router.push("/introduction")}}>
           Codin 코딘
@@ -67,13 +67,13 @@ const Header: React.FC = () => {
                 <p id="모집기간" className="sm:flex items-center whitespace-nowrap hidden">{RECUITMENT_START_DATE} ~ {RECRUITMENT_END_DATE}</p>
                 <div id="모집분야" className="flex items-center whitespace-nowrap w-max relative"
                   onMouseEnter={()=>setdropDownHovered(true)} onMouseLeave={()=>setdropDownHovered(false)}>
-                  <button className="flex items-center justify-center" onClick={()=>{setdropDownHovered((prev)=>!prev)}}> 
+                  <button className="flex items-center justify-center z-[120]" onClick={()=>{setdropDownHovered((prev)=>!prev)}}> 
                     모집 분야 
                     <img src="/icons/listdown.svg" width={24}/> 
                   </button>
                   { dropDownHovered && <PartsDropDown/>} 
                 </div>
-                <button id="지원하기" className="flex items-center whitespace-nowrap rounded-lg sm:rounded-xl bg-[rgba(255,255,255,0.25)] py-2 px-4 sm:py-3 sm:px-10">바로 지원하기</button>
+                <button id="지원하기" onClick={()=>{router.push("/apply")}} className="flex items-center whitespace-nowrap rounded-lg sm:rounded-xl bg-[rgba(255,255,255,0.25)] py-2 px-4 sm:py-3 sm:px-10">바로 지원하기</button>
             </div>
         </div>
       </header>
