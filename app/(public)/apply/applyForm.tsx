@@ -44,6 +44,12 @@ const ApplyForm = () => {
         alert("필수 항목을 모두 입력해 주세요.");
         return;
         }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("올바른 이메일 형식을 입력해 주세요.");
+            return;
+        }
 
         const formDataToSend = new FormData();
         formDataToSend.append("entry.394809328", field);
