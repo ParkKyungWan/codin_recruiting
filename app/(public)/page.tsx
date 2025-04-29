@@ -7,10 +7,12 @@ import RadiantBox from "@/components/common/radiantBox";
 import { MAX_LAYOUT_WIDTH } from "@/constants/layout";
 import { RECRUITMENT_END_DATE, RECUITMENT_START_DATE } from "@/constants/recruitment";
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger, } from 'gsap/ScrollTrigger';
 import { Suspense, useEffect, useRef, useState } from "react";
+import { ScrollToPlugin } from "gsap/all";
 
 
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const Home: React.FC = () => {
 
@@ -32,9 +34,32 @@ const Home: React.FC = () => {
     return () => clearInterval(interval); 
   }, []);
 
+  const scrollStartRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!scrollStartRef.current) return;
+
+    ScrollTrigger.create({
+      trigger: scrollStartRef.current,
+      start: "top bottom", 
+      once: true,          
+      onEnter: () => {
+        gsap.to(window, {
+          scrollTo: {
+            y: scrollStartRef.current!,
+            offsetY: window.innerHeight / 2 - 100, 
+          },
+          duration: 1, 
+          ease: "power2.out",
+        });
+      },
+    });
+
+    return () => ScrollTrigger.killAll();
+  }, []);
+
   /*gsap 스크롤 트리거*/
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray('.animate-on-scroll').forEach((el: any) => {
       gsap.fromTo(
         el,
@@ -75,8 +100,8 @@ const Home: React.FC = () => {
 
   return (
     <div className="w-full">
-      <div className="relative flex flex-col items-center justify-center w-full h-[66vh] sm:h-screen">
-        <div id="mainInfo" className="flex flex-col items-center pb-[80px]">
+      <div className="relative flex flex-col items-center justify-center w-full h-screen">
+        <div id="mainInfo" className="flex flex-col items-center pb-[210px] sm:pb-[80px]">
           <img id="mainInfoImg" src="/logo/logo.png" className="w-[188px] sm:w-[265px]"/>
           <p id="mainInfoTitle" className="mt-9 font-title font-light sm:mt-10">코딘은 <span className="text-highlight">정보기술대학의 공식 SNS</span>입니다 </p>
           <p id="mainInfoSubTitle1" className="mt-5 font-subtitle text-sub">단순한 커뮤니티를 넘어, 강의실 현황, 연구실 정보, 비교과 등 </p>
@@ -85,7 +110,7 @@ const Home: React.FC = () => {
         <BackGroundBlur/>
       </div>
       <div className="flex flex-col items-center">
-        <div className="animate-on-scroll ">
+        <div ref={scrollStartRef} className="animate-on-scroll ">
           <RadiantBox>
             <h1 className="font-titleMega font-medium whitespace-nowrap">코딘은 어떤 팀인가요?</h1>
             <button className="font-gradient font-pressable font-subtitle font-light mt-[12px]">자세히 알아보기 {'>'} </button>

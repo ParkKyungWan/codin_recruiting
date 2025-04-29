@@ -26,7 +26,7 @@ const Introduction: React.FC = () => {
                 initial={{ opacity: 0 }} animate={{ opacity: [1 , 0.5], filter: "blur(16px)" }} transition={{ duration:0.3 , filter: {delay:1, duration: 1.5} }}>
                 <motion.div id="mainInfo" className="flex flex-col items-center pb-[80px]"
                     initial={{ opacity: 1 }} animate={{ opacity: 0 }} transition={{ delay:1.5, duration: 0.3, }}>
-                    <img id="mainInfoImg" src="/logo/logo.png" className="w-[360px] sm:w-[519px] max-w-[80%]"/>
+                    <img loading="eager" id="mainInfoImg" src="/logo/logo.png" className="w-[360px] sm:w-[519px] max-w-[80%]"/>
                 </motion.div>
             </motion.div>
 

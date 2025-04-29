@@ -5,7 +5,6 @@ import { MAX_LAYOUT_WIDTH } from "@/constants/layout";
 import { motion } from 'framer-motion';
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import FooterInfo from "./footerInfo";
 
 const PartsDropDown: React.FC = () => {
   const router = useRouter();
@@ -42,7 +41,7 @@ const PartsDropDown: React.FC = () => {
         > 
           { RECUITMENT_PARTS.map((part, index)=>(
             <motion.div key={index} variants={childrenVariants}>
-              <button onClick={()=>{router.push(`/recuitmentParts/${part.link}`)}} className="text-sub hover:text-white font:font-bold">{part.simple}</button>
+              <button onClick={()=>{router.push(`/parts/${part.link}`)}} className="text-sub hover:text-white font:font-bold">{part.simple}</button>
             </motion.div>
           ))}
         </motion.div>

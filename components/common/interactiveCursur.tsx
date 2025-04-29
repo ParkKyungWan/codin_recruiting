@@ -65,7 +65,7 @@ const InteractiveCursur: React.FC = () => {
                 top: position.y,
                 width: '28px',
                 height: '28px',
-                backgroundColor: `${isClicking ? "rgba(0,0,0,0.25)" : isHovering? "rgba(0,0,0,0.55)" : "rgba(255,255,255,0.55)"}`,
+                backgroundColor: `${isClicking ? "rgba(255,255,255,0.18)" : isHovering? "rgba(0,0,0,0.55)" : "rgba(255,255,255,0.55)"}`,
                 borderRadius: '50%',
                 pointerEvents: 'none',
                 transform: `translate(-50%, -50%) ${isClicking ? "scale(0.8)" : isHovering ? "scale(1.3)" : "scale(1)"}`,
