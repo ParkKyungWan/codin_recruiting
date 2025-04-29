@@ -1,9 +1,11 @@
 "use client";
 import { RECUITMENT_PARTS } from "@/constants/recruitment";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Introduction = () => {
+
+    const router = useRouter();
 
     const searchParams = useSearchParams();
     const partParam = searchParams.get("part");
@@ -62,7 +64,9 @@ const Introduction = () => {
             mode: "no-cors",
             body: formDataToSend,
         });
-        alert("제출 완료되었습니다!");
+        /* 제출 완료 */
+        router.push("/apply/success");
+        
         } catch (error) {
         console.error(error);
         alert("제출 실패. 다시 시도해주세요.");
@@ -70,7 +74,7 @@ const Introduction = () => {
     };
 
     return (
-        <div className="max-w-[600px] mx-auto py-20 px-6 text-white">
+        <div className="max-w-[720px] mx-auto py-20 px-6 text-white">
         <h1 className="text-4xl font-bold mb-16">지원서 작성</h1>
 
         {/* 지원 분야 */}
@@ -78,7 +82,7 @@ const Introduction = () => {
             <label className="block font-semibold mb-3">
             지원 분야 <span className="text-sky-500">*</span>
             </label>
-            <select name="field" value={formData.field} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3">
+            <select name="field" value={formData.field} onChange={handleChange} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3">
             <option value="">선택하세요</option>
             {RECUITMENT_PARTS.map((part, index) => (
                 <option key={index}>{part.titleKR}</option>
@@ -91,9 +95,9 @@ const Introduction = () => {
             <label className="block font-semibold mb-3">
             성함 / 연락처 / 이메일 <span className="text-sky-500">*</span>
             </label>
-            <input name="name" type="text" placeholder="홍길동" value={formData.name} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-3" />
-            <input name="phone" type="text" placeholder="010-1234-5678" value={formData.phone} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-3" />
-            <input name="email" type="email" placeholder="example@inu.ac.kr" value={formData.email} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3" />
+            <input name="name" type="text" placeholder="홍길동" value={formData.name} onChange={handleChange} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-3" />
+            <input name="phone" type="text" placeholder="010-1234-5678" value={formData.phone} onChange={handleChange} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-3" />
+            <input name="email" type="email" placeholder="example@inu.ac.kr" value={formData.email} onChange={handleChange} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3" />
         </div>
 
         {/* 학교 / 최종 학력 */}
@@ -101,8 +105,8 @@ const Introduction = () => {
             <label className="block font-semibold mb-3">
             학교 / 최종 학력 <span className="text-sky-500">*</span>
             </label>
-            <input name="school" type="text" placeholder="코딩대학교" value={formData.school} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-3" />
-            <select name="degree" value={formData.degree} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-3">
+            <input name="school" type="text" placeholder="코딩대학교" value={formData.school} onChange={handleChange} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-3" />
+            <select name="degree" value={formData.degree} onChange={handleChange} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 mb-3">
             <option value="">선택하세요</option>
             <option>재학 중이에요</option>
             <option>휴학 중이에요</option>
@@ -114,29 +118,29 @@ const Introduction = () => {
         {/* 전공명 */}
         <div className="mb-10">
             <label className="block font-semibold mb-3">전공명</label>
-            <input name="major" type="text" placeholder="컴퓨터공학부" value={formData.major} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3" />
+            <input name="major" type="text" placeholder="컴퓨터공학부" value={formData.major} onChange={handleChange} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3" />
         </div>
 
         {/* 자기소개서 질문 3개 */}
         <div className="mb-10">
             <label className="block font-semibold mb-2">
-            1. 대학 생활 중 가장 열정을 쏟았던 활동은 무엇이며, 어떤 역할을 맡았는지 서술해주세요. <span className="text-sub">({formData.intro1.length} / 500자 이내)</span>
+            1. 대학 생활 중 가장 열정을 쏟았던 활동은 무엇이며, 어떤 역할을 맡았는지 서술해주세요. <span className="text-sub">({formData.intro1.length? " "+formData.intro1.length+" / " : " "}500자 이내)</span>
             </label>
-            <textarea name="intro1" value={formData.intro1} onChange={handleChange} maxLength={500} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
+            <textarea name="intro1" value={formData.intro1} onChange={handleChange} maxLength={500} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
         </div>
 
         <div className="mb-10">
             <label className="block font-semibold mb-2">
-            2. 협업 과정에서, 갈등을 해결하기 위한 본인만의 방식이 있다면 서술해주세요. <span className="text-sub">({formData.intro2.length} / 500자 이내)</span>
+            2. 협업 과정에서, 갈등을 해결하기 위한 본인만의 방식이 있다면 서술해주세요. <span className="text-sub">({formData.intro2.length? " "+formData.intro2.length+" / " : " "}500자 이내)</span>
             </label>
-            <textarea name="intro2" value={formData.intro2} onChange={handleChange} maxLength={500} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
+            <textarea name="intro2" value={formData.intro2} onChange={handleChange} maxLength={500} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
         </div>
 
         <div className="mb-10">
             <label className="block font-semibold mb-2">
-            3. 선택하신 분야에서 역량을 높이기 위해 노력하신 경험이 있다면 서술해주세요. <span className="text-sub">({formData.intro3.length} / 500자 이내)</span>
+            3. 선택하신 분야에서, 역량을 높이기 위해 노력하신 경험이 있다면 서술해주세요. <span className="text-sub">({formData.intro3.length? " "+formData.intro3.length+" / " : " "}500자 이내)</span>
             </label>
-            <textarea name="intro3" value={formData.intro3} onChange={handleChange} maxLength={500} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
+            <textarea name="intro3" value={formData.intro3} onChange={handleChange} maxLength={500} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3 h-40" />
         </div>
 
         {/* 포트폴리오 */}
@@ -148,12 +152,13 @@ const Introduction = () => {
             지원자 분의 경험이 드러나는 '링크'를 자유롭게 첨부해주세요<br/>
             <span className="text-gray-400 pt-2">ex) 노션, 구글 드라이브, 깃허브, pdf파일 링크 ...</span>
             </p>
-            <input name="portfolioLink" type="url" placeholder="https://example.sample.url ..." value={formData.portfolioLink} onChange={handleChange} className="appearance-none w-full bg-black border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3" />
+            <input name="portfolioLink" type="url" placeholder="https://example.sample.url ..." value={formData.portfolioLink} onChange={handleChange} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3" />
         </div>
 
         <button onClick={handleSubmit} className="w-full py-4 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-xl font-semibold hover:bg-sky-600 transition">
             제출하기
         </button>
+        
         </div>
     );
     };
