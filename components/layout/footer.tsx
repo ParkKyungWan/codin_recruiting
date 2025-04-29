@@ -17,7 +17,6 @@ const Footer: React.FC = () => {
               <img id="logo" src="/logo/inu.png" className="opacity-66 w-[80px] sm:w-[120px] object-contain"/>
           </div>
           <div id="tossInfo" className="flex text-[12px] text-sub opacity-33 text-end">
-              <p>이 페이지에는 토스팀에서 제공한 토스페이스가 적용되어 있습니다.</p>
           </div>
         </div>
       </footer>

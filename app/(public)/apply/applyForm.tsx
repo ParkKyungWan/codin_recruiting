@@ -33,6 +33,8 @@ const ApplyForm = () => {
         intro3: "",
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -44,12 +46,14 @@ const ApplyForm = () => {
         alert("필수 항목을 모두 입력해 주세요.");
         return;
         }
-        
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             alert("올바른 이메일 형식을 입력해 주세요.");
             return;
         }
+
+        setIsSubmitting(true);
 
         const formDataToSend = new FormData();
         formDataToSend.append("entry.394809328", field);
@@ -83,9 +87,11 @@ const ApplyForm = () => {
         });
 
         /* 제출 완료 */
+        setIsSubmitting(false);
         router.push("/apply/success");
         
         } catch (error) {
+        setIsSubmitting(false);
         console.error(error);
         alert("제출 실패. 다시 시도해주세요.");
         }
@@ -173,8 +179,8 @@ const ApplyForm = () => {
             <input name="portfolioLink" type="url" placeholder="https://example.sample.url ..." value={formData.portfolioLink} onChange={handleChange} className="appearance-none w-full bg-[#0a0a0a] border border-[rgba(224,241,254,0.5)] rounded-lg px-4 py-3" />
         </div>
 
-        <button onClick={handleSubmit} className="w-full py-4 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-xl font-semibold hover:bg-sky-600 transition">
-            제출하기
+        <button type="button" disabled={isSubmitting} onClick={handleSubmit} className="w-full py-4 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-xl font-semibold hover:bg-sky-600 transition disabled:cursor-not-allowed disabled:opacity-50">
+            {isSubmitting ? "제출 중입니다..." : "제출하기"}
         </button>
         
         </div>
