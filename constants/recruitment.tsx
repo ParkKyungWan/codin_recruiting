@@ -1,7 +1,7 @@
 import { JSX } from "react";
 
 export const RECUITMENT_START_DATE = "25.04.30" as const;
-export const RECRUITMENT_END_DATE = "25.05.11" as const;
+export const RECRUITMENT_END_DATE = "상시 모집 중" as const;
 
 /* 파트 별 정보 */
 export const RECUITMENT_PARTS = [
