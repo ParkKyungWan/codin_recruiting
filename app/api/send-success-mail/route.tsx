@@ -33,9 +33,9 @@ export async function POST(req: Request) {
       text: `새로운 지원자가 접수되었습니다.\n\n이름: ${name}\n이메일: ${email}\n학과/전공: ${major}\n포트폴리오: ${portfolioLink}\n\n문항1: ${intro1}\n문항2: ${intro2}\n문항3: ${intro3}`,
       html: `
         <div style="max-width:640px;margin:0 auto;padding:24px;
-                    background:transparent;color:#f3f4f6;
+                    background:#222222;color:#f3f4f6;
                     border-radius:14px;font-family:'Segoe UI',Arial,sans-serif;">
-          <h2 style="color:#0D99FF;margin-bottom:16px;">
+          <h2 style="color:#EBF0F7;margin-bottom:16px;">
             📥 새로운 지원자가 접수되었습니다
           </h2>
 
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
             </tr>
           </table>
 
-          <h3 style="margin-top:24px;color:#0D99FF;">✍️ 자기소개 문항</h3>
+          <h3 style="margin-top:24px;color:#bbbbbb;">✍️ 자기소개 문항</h3>
           <ol style="padding-left:20px;line-height:1.6;color:#f3f4f6;font-size:14px;">
             <li><strong style="color:#9ca3af;">문항 1:</strong> ${intro1 || "-"}</li>
             <li><strong style="color:#9ca3af;">문항 2:</strong> ${intro2 || "-"}</li>
